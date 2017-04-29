@@ -9,7 +9,6 @@ public class Kurs {
 	private String naziv;
 	
 	public Kurs(int sifra, String skracenNaziv, double prodajni, double srednji, double kupovni, String naziv) {
-		super();
 		this.sifra = sifra;
 		this.skracenNaziv = skracenNaziv;
 		this.prodajni = prodajni;

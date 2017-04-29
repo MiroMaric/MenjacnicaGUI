@@ -36,18 +36,19 @@ public class DodajKursGUI extends JFrame {
 	private JLabel lblKupovniKurs;
 	private JLabel lblSrednjiKurs;
 	private JLabel lblSkracenNaziv;
-	public static void otvoriDodajKurs(){
+
+	public static void otvoriDodajKurs() {
 		DodajKursGUI frame = new DodajKursGUI();
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-					frame.dispose();
+				frame.dispose();
 			}
 		});
 	}
-	
+
 	/**
 	 * Create the frame.
 	 */
@@ -75,6 +76,7 @@ public class DodajKursGUI extends JFrame {
 		contentPane.add(getLblSrednjiKurs());
 		contentPane.add(getLblSkracenNaziv());
 	}
+
 	private JTextField getTextFieldSifra() {
 		if (textFieldSifra == null) {
 			textFieldSifra = new JTextField();
@@ -83,6 +85,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldSifra;
 	}
+
 	private JTextField getTextFieldNaziv() {
 		if (textFieldNaziv == null) {
 			textFieldNaziv = new JTextField();
@@ -91,6 +94,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldNaziv;
 	}
+
 	private JTextField getTextFieldProdajni() {
 		if (textFieldProdajni == null) {
 			textFieldProdajni = new JTextField();
@@ -99,6 +103,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldProdajni;
 	}
+
 	private JTextField getTextFieldKupovni() {
 		if (textFieldKupovni == null) {
 			textFieldKupovni = new JTextField();
@@ -107,6 +112,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldKupovni;
 	}
+
 	private JTextField getTextFieldSrednji() {
 		if (textFieldSrednji == null) {
 			textFieldSrednji = new JTextField();
@@ -115,6 +121,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldSrednji;
 	}
+
 	private JTextField getTextFieldSkracenNaziv() {
 		if (textFieldSkracenNaziv == null) {
 			textFieldSkracenNaziv = new JTextField();
@@ -123,6 +130,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return textFieldSkracenNaziv;
 	}
+
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Dodaj");
@@ -134,21 +142,22 @@ public class DodajKursGUI extends JFrame {
 					String kupovni = textFieldKupovni.getText();
 					String srednji = textFieldSrednji.getText();
 					String skracenNaziv = textFieldSkracenNaziv.getText();
-					String tekst = "Sifra proizvoda je: "+sifra+", naziv: "+naziv+",prodajni kurs: "+prodajni+", kupovni: "+kupovni+", srednji: "+
-									srednji+", skracen naziv: "+skracenNaziv;
-					Kurs k = new Kurs(Integer.parseInt(sifra), skracenNaziv, Double.parseDouble(prodajni),Double.parseDouble(srednji),
-									Double.parseDouble(kupovni),naziv);
+					String tekst = "Dodat je novi Kurs. Sifra kursa je: " + sifra + ", naziv: " + naziv + ",prodajni kurs: " + prodajni
+							+ ", kupovni: " + kupovni + ", srednji: " + srednji + ", skracen naziv: " + skracenNaziv;
+					Kurs k = new Kurs(Integer.parseInt(sifra), skracenNaziv, Double.parseDouble(prodajni),
+							Double.parseDouble(srednji), Double.parseDouble(kupovni), naziv);
 					MenjacnicaGUI.kursevi.add(k);
-					MenjacnicaGUI.textAreaStatus.append(tekst+"\n");
+					MenjacnicaGUI.textAreaStatus.append(tekst + "\n");
 					azurirajTabelu();
 					dispose();
 				}
 			});
 			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnNewButton.setBounds(10, 227, 200, 30);
+			btnNewButton.setBounds(10, 230, 200, 30);
 		}
 		return btnNewButton;
 	}
+
 	private JButton getBtnOdustani() {
 		if (btnOdustani == null) {
 			btnOdustani = new JButton("Odustani");
@@ -158,10 +167,11 @@ public class DodajKursGUI extends JFrame {
 				}
 			});
 			btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnOdustani.setBounds(224, 227, 200, 30);
+			btnOdustani.setBounds(224, 230, 200, 30);
 		}
 		return btnOdustani;
 	}
+
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("Sifra");
@@ -170,6 +180,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblNewLabel;
 	}
+
 	private JLabel getLblNaziv() {
 		if (lblNaziv == null) {
 			lblNaziv = new JLabel("Naziv");
@@ -178,6 +189,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblNaziv;
 	}
+
 	private JLabel getLblProdajniKurs() {
 		if (lblProdajniKurs == null) {
 			lblProdajniKurs = new JLabel("Prodajni kurs");
@@ -186,6 +198,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblProdajniKurs;
 	}
+
 	private JLabel getLblKupovniKurs() {
 		if (lblKupovniKurs == null) {
 			lblKupovniKurs = new JLabel("Kupovni kurs");
@@ -194,6 +207,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblKupovniKurs;
 	}
+
 	private JLabel getLblSrednjiKurs() {
 		if (lblSrednjiKurs == null) {
 			lblSrednjiKurs = new JLabel("Srednji kurs");
@@ -202,6 +216,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblSrednjiKurs;
 	}
+
 	private JLabel getLblSkracenNaziv() {
 		if (lblSkracenNaziv == null) {
 			lblSkracenNaziv = new JLabel("Skracen naziv");
@@ -210,7 +225,8 @@ public class DodajKursGUI extends JFrame {
 		}
 		return lblSkracenNaziv;
 	}
-	public void azurirajTabelu(){
+
+	public void azurirajTabelu() {
 		PrikazKursevaTableModel model = (PrikazKursevaTableModel) MenjacnicaGUI.table.getModel();
 		model.azurirajTabelu(MenjacnicaGUI.kursevi);
 	}

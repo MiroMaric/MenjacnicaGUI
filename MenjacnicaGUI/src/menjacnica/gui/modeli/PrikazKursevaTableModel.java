@@ -55,5 +55,4 @@ public class PrikazKursevaTableModel extends AbstractTableModel{
 	public Kurs vratiKurs(int index){
 		return kursevi.get(index);
 	}
-
 }

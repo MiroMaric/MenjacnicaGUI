@@ -130,6 +130,25 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnObrisiKurs() {
 		if (btnObrisiKurs == null) {
 			btnObrisiKurs = new JButton("Obrisi kurs");
+			btnObrisiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					PrikazKursevaTableModel model = (PrikazKursevaTableModel)table.getModel();
+					if(table.getSelectedRow()!=-1){
+						ObrisiKursGUI.otvoriObrisiKursGUI();
+						int sifra = (int)model.getValueAt(getTable().getSelectedRow(),0);
+						String skracenNaziv = (String)model.getValueAt(getTable().getSelectedRow(),1);
+						double prodajni = (double)model.getValueAt(getTable().getSelectedRow(),2);
+						double srednji = (double)model.getValueAt(getTable().getSelectedRow(),3);
+						double kupovni = (double)model.getValueAt(getTable().getSelectedRow(),4);
+						String naziv = (String)model.getValueAt(getTable().getSelectedRow(),5);
+						ObrisiKursGUI.podesiPoljaObrisiKursGui(sifra, skracenNaziv, prodajni, srednji, kupovni, naziv);
+					}
+					else{
+						JOptionPane.showMessageDialog(MenjacnicaGUI, "Morate prvo selektovati kurs koji zelite da obrisete",
+								"Greksa", JOptionPane.OK_OPTION);
+					}
+				}
+			});
 			btnObrisiKurs.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			btnObrisiKurs.setBounds(10, 53, 160, 23);
 		}
@@ -320,7 +339,7 @@ public class MenjacnicaGUI extends JFrame {
 			mntmDodajKurs = new JMenuItem("Dodaj kurs");
 			mntmDodajKurs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				DodajKursGUI.otvoriDodajKurs();
+				getBtnDodajKurs().doClick();
 				}
 			});
 		}
@@ -329,6 +348,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmObrisiKurs() {
 		if (mntmObrisiKurs == null) {
 			mntmObrisiKurs = new JMenuItem("Obrisi kurs");
+			mntmObrisiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					getBtnObrisiKurs().doClick();
+				}
+			});
 		}
 		return mntmObrisiKurs;
 	}
@@ -338,8 +362,12 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return mntmIzvrsiZamenu;
 	}
-	public void azurirajTabelu(){
+	public static void azurirajTabelu(){
 		PrikazKursevaTableModel model = (PrikazKursevaTableModel) table.getModel();
 		model.azurirajTabelu(kursevi);
+	}
+	public static void obrisiKurs(int index){
+		if(index!=-1)
+			kursevi.remove(index);
 	}
 }

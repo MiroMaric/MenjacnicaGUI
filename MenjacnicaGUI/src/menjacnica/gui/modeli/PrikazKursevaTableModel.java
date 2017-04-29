@@ -6,6 +6,8 @@ import javax.swing.table.AbstractTableModel;
 import menjacnica.Kurs;
 
 public class PrikazKursevaTableModel extends AbstractTableModel{
+
+	private static final long serialVersionUID = 1L;
 	private String[] kolone = {"Sifra","Skraceni naziv","Prodajni","Srednji","Kupovni","Naziv"};
 	private List<Kurs> kursevi;
 	

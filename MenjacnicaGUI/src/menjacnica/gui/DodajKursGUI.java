@@ -1,15 +1,10 @@
 package menjacnica.gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import menjacnica.Kurs;
 import menjacnica.gui.modeli.PrikazKursevaTableModel;
-
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -17,10 +12,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class DodajKursGUI extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldSifra;
 	private JTextField textFieldNaziv;
@@ -48,14 +47,11 @@ public class DodajKursGUI extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
 	public DodajKursGUI() {
 		setResizable(false);
 		setTitle("DodajKurs");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DodajKursGUI.class.getResource("/coin.png")));
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -136,20 +132,24 @@ public class DodajKursGUI extends JFrame {
 			btnNewButton = new JButton("Dodaj");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String sifra = textFieldSifra.getText();
-					String naziv = textFieldNaziv.getText();
-					String prodajni = textFieldProdajni.getText();
-					String kupovni = textFieldKupovni.getText();
-					String srednji = textFieldSrednji.getText();
-					String skracenNaziv = textFieldSkracenNaziv.getText();
-					String tekst = "Dodat je novi Kurs. Sifra kursa je: " + sifra + ", naziv: " + naziv + ",prodajni kurs: " + prodajni
-							+ ", kupovni: " + kupovni + ", srednji: " + srednji + ", skracen naziv: " + skracenNaziv;
-					Kurs k = new Kurs(Integer.parseInt(sifra), skracenNaziv, Double.parseDouble(prodajni),
-							Double.parseDouble(srednji), Double.parseDouble(kupovni), naziv);
-					MenjacnicaGUI.kursevi.add(k);
-					MenjacnicaGUI.textAreaStatus.append(tekst + "\n");
-					azurirajTabelu();
-					dispose();
+					try {
+						String sifra = textFieldSifra.getText();
+						String naziv = textFieldNaziv.getText();
+						String prodajni = textFieldProdajni.getText();
+						String kupovni = textFieldKupovni.getText();
+						String srednji = textFieldSrednji.getText();
+						String skracenNaziv = textFieldSkracenNaziv.getText();
+						String tekst = "Dodat je novi Kurs. Sifra kursa je: " + sifra + ", naziv: " + naziv + ",prodajni kurs: " + prodajni
+								+ ", kupovni: " + kupovni + ", srednji: " + srednji + ", skracen naziv: " + skracenNaziv;
+						Kurs k = new Kurs(Integer.parseInt(sifra), skracenNaziv, Double.parseDouble(prodajni),
+								Double.parseDouble(srednji), Double.parseDouble(kupovni), naziv);
+						MenjacnicaGUI.kursevi.add(k);
+						MenjacnicaGUI.textAreaStatus.append(tekst + "\n");
+						azurirajTabelu();
+						dispose();
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(DodajKursGUI.this,"Gresja prilikom popunjavanja polja u kome se ocekuje brojevna verednost" ,"Greska", JOptionPane.DEFAULT_OPTION);
+					}
 				}
 			});
 			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));

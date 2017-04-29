@@ -44,6 +44,8 @@ import java.awt.Component;
 
 public class MenjacnicaGUI extends JFrame {
 
+
+	private static final long serialVersionUID = 1L;
 	protected static final Component MenjacnicaGUI = null;
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
@@ -67,9 +69,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem mntmObrisiKurs;
 	private JMenuItem mntmIzvrsiZamenu;
 	public static LinkedList<Kurs> kursevi = new LinkedList<>();
-	/**
-	 * Create the frame.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -81,7 +81,7 @@ public class MenjacnicaGUI extends JFrame {
 						private Component frame;
 						@Override
 						public void windowClosing(WindowEvent e) {
-							int odgovor = JOptionPane.showConfirmDialog(frame, "Da li zelite da zatvorite aplikaciju?", "Zatvaranje", JOptionPane.YES_NO_OPTION);
+							int odgovor = JOptionPane.showConfirmDialog(frame, "Da li zelite da zatvorite aplikaciju?", "Zatvaranje", JOptionPane.YES_NO_CANCEL_OPTION);
 							if(odgovor == JOptionPane.YES_OPTION)
 								System.exit(0);
 						}
@@ -175,6 +175,7 @@ public class MenjacnicaGUI extends JFrame {
 			btnIzvrsiZamenu.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			btnIzvrsiZamenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					IzvrsiZamenuGUI.otvoriIzvrsiZamenuGui();
 				}
 			});
 			btnIzvrsiZamenu.setBounds(10, 87, 160, 23);
@@ -292,7 +293,8 @@ public class MenjacnicaGUI extends JFrame {
 			mntmAbout = new JMenuItem("About");
 			mntmAbout.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(MenjacnicaGUI, "Domaci zadatak: MenjacnicaGUI\nMiro Maric 1031/16\n2017", "About",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(MenjacnicaGUI, "Miro Maric 1031/16\n"
+							+"Mentor: Anisja Kijevcanin\n" +"FON 2017", "About",JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
 			mntmAbout.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/DetailsView.gif")));
@@ -359,6 +361,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmIzvrsiZamenu() {
 		if (mntmIzvrsiZamenu == null) {
 			mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
+			mntmIzvrsiZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					btnIzvrsiZamenu.doClick();
+				}
+			});
 		}
 		return mntmIzvrsiZamenu;
 	}

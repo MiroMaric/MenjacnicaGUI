@@ -9,12 +9,12 @@ public class Kurs {
 	private String naziv;
 	
 	public Kurs(int sifra, String skracenNaziv, double prodajni, double srednji, double kupovni, String naziv) {
-		this.sifra = sifra;
-		this.skracenNaziv = skracenNaziv;
-		this.prodajni = prodajni;
-		this.srednji = srednji;
-		this.kupovni = kupovni;
-		this.naziv = naziv;
+		setSifra(sifra);
+		setKupovni(kupovni);
+		setNaziv(naziv);
+		setSkracenNaziv(skracenNaziv);
+		setProdajni(prodajni);
+		setSrednji(srednji);
 	}
 
 	public int getSifra() {
@@ -22,7 +22,7 @@ public class Kurs {
 	}
 
 	public void setSifra(int sifra) {
-		this.sifra = sifra;
+			this.sifra = sifra;
 	}
 
 	public String getSkracenNaziv() {
@@ -30,7 +30,10 @@ public class Kurs {
 	}
 
 	public void setSkracenNaziv(String skracenNaziv) {
-		this.skracenNaziv = skracenNaziv;
+		if(skracenNaziv!=null && skracenNaziv.length()<5)
+			this.skracenNaziv = skracenNaziv;
+		else
+			throw new RuntimeException("Skracen naziv valute mora biti unet i manji od 5 karaktera.");
 	}
 
 	public double getProdajni() {
@@ -38,7 +41,10 @@ public class Kurs {
 	}
 
 	public void setProdajni(double prodajni) {
-		this.prodajni = prodajni;
+		if(prodajni>0)
+			this.prodajni = prodajni;
+		else
+			throw new RuntimeException("Prodajni kurs mora biti unet kao i veci od nule");
 	}
 
 	public double getSrednji() {
@@ -46,7 +52,10 @@ public class Kurs {
 	}
 
 	public void setSrednji(double srednji) {
-		this.srednji = srednji;
+		if(srednji>0)
+			this.srednji = srednji;
+		else
+			throw new RuntimeException("Srednji kurs mora biti unet kao i veci od nule");
 	}
 
 	public double getKupovni() {
@@ -54,7 +63,10 @@ public class Kurs {
 	}
 
 	public void setKupovni(double kupovni) {
-		this.kupovni = kupovni;
+		if(kupovni>0)
+			this.kupovni = kupovni;
+		else
+			throw new RuntimeException("Kupovni kurs mora biti unet kao i veci od nule");
 	}
 
 	public String getNaziv() {
@@ -62,7 +74,10 @@ public class Kurs {
 	}
 
 	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+		if(naziv!=null)
+			this.naziv = naziv;
+		else
+			throw new RuntimeException("Naziv mora biti unet");
 	}
 	
 }
